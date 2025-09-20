@@ -5,8 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="58447e25-b9a8-4023-8248-898002797cbd" name="Changes" comment="1">
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/BackGround.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/Balloon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/Heal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/Money.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/Shield.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Images/Spikes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Sounds/72d75b436239218.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Sounds/crackling-dry-wood.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Sounds/healing-after-a-battle-in-a-computer-game.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/Sounds/lost-money-on-the-game-account.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Balloon/game.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flappycat/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flappycat/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/flappycat/landscape-1844229_1280.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main6.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main7.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main5.py" beforeDir="false" afterPath="$PROJECT_DIR$/main5.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,18 +39,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "BoVlad"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;BoVlad&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/BoVlad/PyGame6867.git",
-    "accountId": "da9d2d3d-6bbb-4c41-9ff5-2bde7c3fee0c"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/BoVlad/PyGame6867.git&quot;,
+    &quot;accountId&quot;: &quot;da9d2d3d-6bbb-4c41-9ff5-2bde7c3fee0c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -50,17 +66,36 @@
     "Python.2.executor": "Run",
     "Python.3.executor": "Run",
     "Python.4.executor": "Run",
+    "Python.app.executor": "Run",
+    "Python.game.executor": "Run",
     "Python.main.executor": "Run",
     "Python.main2.executor": "Run",
     "Python.main3.executor": "Run",
     "Python.main4.executor": "Run",
+    "Python.main5.executor": "Run",
+    "Python.main6.executor": "Run",
     "Python.math_utils.executor": "Run",
     "Python.mein.executor": "Run",
+    "Python.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Zver/PycharmProjects/PyGame6867/Balloon/Images"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\Balloon\Images" />
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\TopRacing\Images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\Balloon\Sounds" />
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\TopRacing" />
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\TopRacing\Code" />
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\TopRacing\images" />
+      <recent name="C:\Users\Zver\PycharmProjects\PyGame6867\flappycat" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -84,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1757231176300</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="1">
+      <option name="closed" value="true" />
+      <created>1757352316533</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1757352316533</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

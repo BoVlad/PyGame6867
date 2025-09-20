@@ -14,6 +14,8 @@ font_end = pygame.font.SysFont("Bahnschrift", 70)
 
 clock = pygame.time.Clock()
 
+paused = False
+
 lives_var = 3
 money_var = 0
 shield_time = -10
@@ -32,11 +34,11 @@ heal_min_distance = 900
 
 money_timer = 0
 money_list = []
-money_min_distance = 20
+money_min_distance = 10
 
 obstacle_timer = 0
 obstacles = []
-min_distance = 80
+min_distance = 60
 
 
 last_mouse_x = pygame.mouse.get_pos()
@@ -92,146 +94,154 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_p:
+                paused = not paused
     if lives_var <= 0:
         end_text = font_end.render(f"Game over", True, (239, 62, 62))
         screen.blit(end_text, (60, 300))
         pygame.display.flip()
         continue
-
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-    if 40 < mouse_x < 410:
-        balloon = pygame.transform.rotate(balloon, angle)
-        balloon_rect = balloon.get_rect()
-        balloon_rect.x = mouse_x - 35
-        balloon_rect.y = 450
-        # if last_mouse_x >
-        #
-        # rotated = pygame.transform.rotate(balloon_img, angle)
-        # balloon_rect = rotated.get_rect(center=balloon_rect.center)  # сохраняем центр!
-        # balloon = rotated
-        #
-        # last_mouse_x = mouse_x - 35
-
-
-    if obstacle_timer > min_distance:
-        horizontal_spike_pos = random.randint(0, 420)
-        vertical_spikes_pos = -(14 + random.randint(0, 400))
-        spikes_number = random.randint(1, 3)
-        for i in range(0, spikes_number):
-            spike_in_list_rect = spikes.get_rect()
-            spike_in_list_rect.x = horizontal_spike_pos + (i * 30)
-            spike_in_list_rect.y = vertical_spikes_pos
-            obstacles.append(spike_in_list_rect)
-        obstacle_timer = 0
-    if money_timer > money_min_distance:
-        horizontal_money_pos = random.randint(0, 420)
-        vertical_money_pos = -(14 + random.randint(0, 400))
-        money_in_list_rect = money.get_rect()
-        money_in_list_rect.x = horizontal_money_pos
-        money_in_list_rect.y = vertical_money_pos
-        money_list.append(money_in_list_rect)
-        money_timer = 0
-    if heal_timer > heal_min_distance:
-        horizontal_heal_pos = random.randint(0, 420)
-        vertical_heal_pos = -(14 + random.randint(0, 100))
-        heal_in_list_rect = heal.get_rect()
-        heal_in_list_rect.x = horizontal_heal_pos
-        heal_in_list_rect.y = vertical_heal_pos
-        heal_list.append(heal_in_list_rect)
-        heal_timer = 0
-    if shield_timer > shield_min_distance:
-        horizontal_shield_pos = random.randint(0, 420)
-        vertical_shield_pos = -(14 + random.randint(0, 100))
-        shield_in_list_rect = shield.get_rect()
-        shield_in_list_rect.x = horizontal_shield_pos
-        shield_in_list_rect.y = vertical_shield_pos
-        shield_list.append(shield_in_list_rect)
-        shield_timer = 0
+    if not paused:
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        if 40 < mouse_x < 410:
+            balloon = pygame.transform.rotate(balloon, angle)
+            balloon_rect = balloon.get_rect()
+            balloon_rect.x = mouse_x - 35
+            balloon_rect.y = 450
+            # if last_mouse_x >
+            #
+            # rotated = pygame.transform.rotate(balloon_img, angle)
+            # balloon_rect = rotated.get_rect(center=balloon_rect.center)  # сохраняем центр!
+            # balloon = rotated
+            #
+            # last_mouse_x = mouse_x - 35
 
 
+        if obstacle_timer > min_distance:
+            horizontal_spike_pos = random.randint(0, 420)
+            vertical_spikes_pos = -(14 + random.randint(0, 400))
+            spikes_number = random.randint(1, 3)
+            for i in range(0, spikes_number):
+                spike_in_list_rect = spikes.get_rect()
+                spike_in_list_rect.x = horizontal_spike_pos + (i * 30)
+                spike_in_list_rect.y = vertical_spikes_pos
+                obstacles.append(spike_in_list_rect)
+            obstacle_timer = 0
+        if money_timer > money_min_distance:
+            horizontal_money_pos = random.randint(0, 420)
+            vertical_money_pos = -(14 + random.randint(0, 100))
+            money_in_list_rect = money.get_rect()
+            money_in_list_rect.x = horizontal_money_pos
+            money_in_list_rect.y = vertical_money_pos
+            money_list.append(money_in_list_rect)
+            money_timer = 0
+        if heal_timer > heal_min_distance:
+            horizontal_heal_pos = random.randint(0, 420)
+            vertical_heal_pos = -(14 + random.randint(0, 100))
+            heal_in_list_rect = heal.get_rect()
+            heal_in_list_rect.x = horizontal_heal_pos
+            heal_in_list_rect.y = vertical_heal_pos
+            heal_list.append(heal_in_list_rect)
+            heal_timer = 0
+        if shield_timer > shield_min_distance:
+            horizontal_shield_pos = random.randint(0, 420)
+            vertical_shield_pos = -(14 + random.randint(0, 100))
+            shield_in_list_rect = shield.get_rect()
+            shield_in_list_rect.x = horizontal_shield_pos
+            shield_in_list_rect.y = vertical_shield_pos
+            shield_list.append(shield_in_list_rect)
+            shield_timer = 0
 
-    for i in obstacles:
-        i.y = i.y + speed
-        if balloon_rect.colliderect(i):
-            if (pygame.time.get_ticks() // 1000) - 10 >= shield_time:
+
+
+        for i in obstacles:
+            i.y = i.y + speed
+            if balloon_rect.colliderect(i):
+                if (pygame.time.get_ticks() // 1000) - 10 >= shield_time:
+                    shield_time = pygame.time.get_ticks() // 1000
+                    balloon.set_alpha(128)
+                    lives_var = lives_var - 1
+                    obstacles.remove(i)
+                    live_lost_sound.set_volume(0.1)
+                    live_lost_sound.play()
+            if i.y >= 790:
+                obstacles.remove(i)
+        for i in money_list:
+            i.y = i.y + speed
+            if balloon_rect.colliderect(i):
+                money_var = money_var + 1
+                money_list.remove(i)
+                money_sound.set_volume(0.1)
+                money_sound.play()
+            if i.y >= 790:
+                money_list.remove(i)
+        for i in heal_list:
+            i.y = i.y + speed
+            if balloon_rect.colliderect(i):
+                heal_list.remove(i)
+                lives_var = lives_var + 1
+                live_healing_sound.set_volume(0.1)
+                live_healing_sound.play()
+            if i.y >= 790:
+                heal_list.remove(i)
+        for i in shield_list:
+            i.y = i.y + speed
+            if balloon_rect.colliderect(i):
+                shield_list.remove(i)
+                shield_sound.set_volume(0.1)
+                shield_sound.play()
                 shield_time = pygame.time.get_ticks() // 1000
                 balloon.set_alpha(128)
-                lives_var = lives_var - 1
-                obstacles.remove(i)
-                live_lost_sound.set_volume(0.1)
-                live_lost_sound.play()
-        if i.y >= 790:
-            obstacles.remove(i)
-    for i in money_list:
-        i.y = i.y + speed
-        if balloon_rect.colliderect(i):
-            money_var = money_var + 1
-            money_list.remove(i)
-            money_sound.set_volume(0.1)
-            money_sound.play()
-        if i.y >= 790:
-            money_list.remove(i)
-    for i in heal_list:
-        i.y = i.y + speed
-        if balloon_rect.colliderect(i):
-            heal_list.remove(i)
-            lives_var = lives_var + 1
-            live_healing_sound.set_volume(0.1)
-            live_healing_sound.play()
-        if i.y >= 790:
-            heal_list.remove(i)
-    for i in shield_list:
-        i.y = i.y + speed
-        if balloon_rect.colliderect(i):
-            shield_list.remove(i)
-            shield_sound.set_volume(0.1)
-            shield_sound.play()
-            shield_time = pygame.time.get_ticks() // 1000
+            if i.y >= 790:
+                shield_list.remove(i)
+        screen.blit(bg, bg_rect)
+
+        for i in obstacles:
+            screen.blit(spikes, i)
+        for i in money_list:
+            screen.blit(money, i)
+        for i in heal_list:
+            screen.blit(heal, i)
+        for i in shield_list:
+            screen.blit(shield, i)
+        screen.blit(balloon, balloon_rect)
+
+        if (pygame.time.get_ticks() / 1000) - 7 >= shield_time:
+            balloon.set_alpha(255)
+        if (pygame.time.get_ticks() / 1000) - 7.5 >= shield_time:
             balloon.set_alpha(128)
-        if i.y >= 790:
-            shield_list.remove(i)
-    screen.blit(bg, bg_rect)
+        if (pygame.time.get_ticks() / 1000) - 8 >= shield_time:
+            balloon.set_alpha(255)
+        if (pygame.time.get_ticks() / 1000) - 8.5 >= shield_time:
+            balloon.set_alpha(128)
+        if (pygame.time.get_ticks() / 1000) - 9 >= shield_time:
+            balloon.set_alpha(255)
+        if (pygame.time.get_ticks() / 1000) - 9.5 >= shield_time:
+            balloon.set_alpha(128)
+        if (pygame.time.get_ticks() / 1000) - 10 >= shield_time:
+            balloon.set_alpha(255)
 
-    for i in obstacles:
-        screen.blit(spikes, i)
-    for i in money_list:
-        screen.blit(money, i)
-    for i in heal_list:
-        screen.blit(heal, i)
-    for i in shield_list:
-        screen.blit(shield, i)
-    screen.blit(balloon, balloon_rect)
+        lives_text = font.render(f"Lives: {lives_var}", True, (255, 255, 255))
+        screen.blit(lives_text, (10, 10))
 
-    if (pygame.time.get_ticks() / 1000) - 7 >= shield_time:
-        balloon.set_alpha(255)
-    if (pygame.time.get_ticks() / 1000) - 7.5 >= shield_time:
-        balloon.set_alpha(128)
-    if (pygame.time.get_ticks() / 1000) - 8 >= shield_time:
-        balloon.set_alpha(255)
-    if (pygame.time.get_ticks() / 1000) - 8.5 >= shield_time:
-        balloon.set_alpha(128)
-    if (pygame.time.get_ticks() / 1000) - 9 >= shield_time:
-        balloon.set_alpha(255)
-    if (pygame.time.get_ticks() / 1000) - 9.5 >= shield_time:
-        balloon.set_alpha(128)
-    if (pygame.time.get_ticks() / 1000) - 10 >= shield_time:
-        balloon.set_alpha(255)
+        money_text = font.render(f"Score: {money_var}", True, (255, 255, 255))
+        screen.blit(money_text, (10, 40))
 
-    lives_text = font.render(f"Lives: {lives_var}", True, (255, 255, 255))
-    screen.blit(lives_text, (10, 10))
-
-    money_text = font.render(f"Score: {money_var}", True, (255, 255, 255))
-    screen.blit(money_text, (10, 40))
+        info_text = font.render("P - Pause", True, (255, 255, 255))
+        screen.blit(info_text, (10, 70))
 
 
 
 
-    speed = speed + speed_adding
-    obstacle_timer = obstacle_timer + 1
-    money_timer = money_timer + 1
-    heal_timer = heal_timer + 1
-    shield_timer = shield_timer + 1
-
+        speed = speed + speed_adding
+        obstacle_timer = obstacle_timer + 1
+        money_timer = money_timer + 1
+        heal_timer = heal_timer + 1
+        shield_timer = shield_timer + 1
+    else:
+        pause_text = font_end.render("PAUSE", True, (0, 0, 0))
+        screen.blit(pause_text, (120, 300))
 
     pygame.display.flip()
     clock.tick(60)

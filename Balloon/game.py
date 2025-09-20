@@ -16,7 +16,7 @@ clock = pygame.time.Clock()
 
 paused = False
 
-lives_var = 10000
+lives_var = 3
 money_var = 0
 shield_time = -10
 
@@ -160,7 +160,7 @@ while True:
 
 
 
-        for i in obstacles:
+        for i in obstacles[:]:
             i.y = i.y + speed
             if balloon_rect.colliderect(i):
                 if (pygame.time.get_ticks() // 1000) - 10 >= shield_time:
@@ -177,7 +177,7 @@ while True:
                     live_lost_sound.play()
             if i.y >= 790:
                 obstacles.remove(i)
-        for i in money_list:
+        for i in money_list[:]:
             i.y = i.y + speed
             if balloon_rect.colliderect(i):
                 money_var = money_var + 1
@@ -195,7 +195,7 @@ while True:
                 live_healing_sound.play()
             if i.y >= 790:
                 heal_list.remove(i)
-        for i in shield_list:
+        for i in shield_list[:]:
             i.y = i.y + speed
             if balloon_rect.colliderect(i):
                 shield_list.remove(i)
@@ -207,13 +207,13 @@ while True:
                 shield_list.remove(i)
         screen.blit(bg, bg_rect)
 
-        for i in obstacles:
+        for i in obstacles[:]:
             screen.blit(spikes, i)
-        for i in money_list:
+        for i in money_list[:]:
             screen.blit(money, i)
-        for i in heal_list:
+        for i in heal_list[:]:
             screen.blit(heal, i)
-        for i in shield_list:
+        for i in shield_list[:]:
             screen.blit(shield, i)
         screen.blit(balloon, balloon_rect)
 
